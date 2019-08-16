@@ -23,36 +23,40 @@
 					<p class="tm-form-description">欢迎来到网络协会！</p>
 				</header>
 				<form action="http://localhost:8080/NetworkClub/login" method="get"
-					enctype="multipart/form-data" class="tm-form-white tm-font-big"
-					autocomplete="on">
+					name="form1" enctype="multipart/form-data" onsubmit="return checkForm();"
+					class="tm-form-white tm-font-big" autocomplete="on">
 					<div class="tm-bg-white tm-form-pad-big">
 						<div class="form-group mb-5">
 							<label for="school" class="black-text mb-4 big">学校</label>
 							<div>
 								<label class="mr-4"> <input class="with-gap"
-									name="school" type="radio" required="required" value="m" /> <span>张家港校区</span>
-								</label> <label> <input class="with-gap" name="school"
-									type="radio" required="required" value="f" /> <span>苏州理工学院</span>
+									onclick="choosexq()" id="school" name="school" type="radio"
+									required="required" value="m" /> <span>张家港校区</span>
+								</label> <label> <input class="with-gap" id="school"
+									name="school" onclick="chooseslg()" type="radio"
+									required="required" value="f" /> <span>苏州理工学院</span>
 								</label>
 							</div>
 						</div>
 						<div class="form-group mb-5">
-							<label for="college" class="black-text mb-4 big">学院</label> <input
-								id="college" name="college" required="required"
-								class="validate tm-input-white-bg" list="browsers">
-							<datalist id="browsers">
-								<option value="船舶与建筑工程学院">
-								<option value="电气与信息工程学院">
-								<option value="机电与动力工程学院">
-								<option value="冶金与材料工程学院">
-								<option value="商学院">
-								<option value="公共教育学院">
-							</datalist>
+							<label for="college" class="black-text mb-4 big">学院</label> <select
+								id="college" name="college" class="validate tm-input-white-bg"required="required"
+								onChange="getSpecialty()">
+								<option value="0">请选择学院</option>
+								<option value="">船舶与建筑工程学院</option>
+								<option value="">电气与信息工程学院</option>
+								<option value="">公共教育学院</option>
+								<option value="">机电与动力工程学院</option>
+								<option value="">商学院</option>
+								<option value="">冶金与材料工程学院</option>
+							</select>
 						</div>
 						<div class="form-group mb-5">
-							<label for="specialty" class="black-text mb-4 big">专业</label> <input
-								id="specialty" name="specialty" required="required" type="text"
+							<label for="specialty" class="black-text mb-4 big">专业</label> <select
+								id="specialty" name="specialty" required="required"
 								class="validate tm-input-white-bg">
+								<option value="0">请选择专业</option>
+							</select>
 						</div>
 						<div class="form-group mb-5">
 							<label for="name" class="black-text mb-4 big">姓名</label> <input
@@ -81,12 +85,12 @@
 						</div>
 						<div class="form-group mb-5">
 							<label for="qq" class="black-text mb-4 big">QQ</label> <input
-								id="qq" name="qq" required="required" type="qq"
+								id="qq" name="qq" required="required"type="text"
 								class="validate tm-input-white-bg">
 						</div>
 					</div>
 					<div class="text-center mt-5">
-						<button type="submit" onclick="tip()"
+						<button type="submit" 
 							class="waves-effect btn-large btn-large-white">提交</button>
 					</div>
 				</form>
@@ -106,11 +110,115 @@
 		$(document).ready(function() {
 			$('select').formSelect();
 		});
-		function tip() {
-			document.forms
-			alert("提交成功");
+		 document.addEventListener('DOMContentLoaded', function() {
+		     var elems = document.querySelectorAll('select');
+		     var instances = M.FormSelect.init(elems, options);
+		   });
+
+		function choosexq() {
+		    $("#college").empty().append("<option value='0'>请选择学院</option>")
+			.append("<option value='机电与动力工程学院'>机电与动力工程学院</option>")
+			.append("<option value='电气与信息工程学院'>电气与信息工程学院</option>")
+			.append("<option value='商学院'>商学院</option>")
+			.append("<option value='冶金与材料工程学院'>冶金与材料工程学院</option>")
+			$('select').formSelect();
 		}
+		function chooseslg() {
+		    $("#college").empty().append("<option value='0'>请选择学院</option>")
+			.append("<option value='机电与动力工程学院'>机电与动力工程学院</option>")
+			.append("<option value='电气与信息工程学院'>电气与信息工程学院</option>")
+			.append("<option value='商学院'>商学院</option>")
+			.append("<option value='冶金与材料工程学院'>冶金与材料工程学院</option>")
+			.append("<option value='船舶与建筑工程学院'>船舶与建筑工程学院</option>")
+			.append("<option value='公共教育学院'>公共教育学院</option>");
+			$('select').formSelect();
+		}
+		function getSpecialty() {
+			var specialty = [ [ "机械电子工程", "机械设计制造及自动化" ],
+					["软件工程", "电气工程及其自动化", "计算机科学与技术","电子信息工程" , "通信工程" ],
+					[ "财务管理","物流管理", "旅游管理", "经济学", "工商管理" , "信息管理与信息系统" ],
+					[ "材料成型及控制工程", "冶金工程", "焊接技术与工程", "能源与动力工程", "新能源材料与器件" ],
+					[ "船舶与海洋工程", "工程管理", "土木工程" ],
+					[ "社会体育指导与管理", "英语" ],
+					 ];
+			var sltCollege = document.form1.college;
+			var sltSpecialty = document.form1.specialty;
+			var sltSchool=$("input[name='school']").val();
+			var collegeSpecialty = specialty[sltCollege.selectedIndex-1];
+			sltSpecialty.length = 1;
+			var offset=0; 
+			if(sltSchool=="m"){
+			    if(sltCollege.selectedIndex==1)offset=1;
+			    if(sltCollege.selectedIndex==2)offset=3;
+			    if(sltCollege.selectedIndex==3)offset=4;
+			    if(sltCollege.selectedIndex==4)offset=3;
+			} 
+			for (var i = 0; i < collegeSpecialty.length-offset; i++) {
+				sltSpecialty[i + 1] = new Option(collegeSpecialty[i],
+						collegeSpecialty[i]);
+			}
+			 $('select').formSelect();
+		}
+		function checkForm(){
+		       	var school =$("input[name='school']").val();
+		       		if(school == null || school ==""){
+		       		M.toast({html: '学校不能为空', classes: 'rounded'});	
+		       			return false;
+		       	}
+		       	var sel1 = $('#college').val();
+		       		if(sel1 == null || sel1 == ""){
+		       		M.toast({html: '学院不能为空', classes: 'rounded'});	
+		       			return false;
+		       	}
+		       	var sel2 = $('#specialty').val();
+		       		if(sel2 == null || sel2 == ""){
+		       			if(school == 'z' && (sel1 == '船舶与建筑工程学院' || sel1 == '公共教育学院') ){
+		       			}else{
+		       			M.toast({html: '专业不能为空', classes: 'rounded'});	
+		       				return false;
+		       			}
+		       	}
+		       	var name = $('#name').val();
+		       		if(name == null|| name == ""){
+		       		M.toast({html: '姓名不能为空', classes: 'rounded'});	
+		       			return false;
+		       	}
+		       	var num = $('#num').val();
+		       	 var pattern =  /^(0|[1-9]\d*)$/;
+		       	 	if(pattern.test(num) == false){
+		       		M.toast({html: '请输入正确格式的学号', classes: 'rounded'});	
+		               	return false; 
+		           }else if(num.length != 12){
+		       	M.toast({html: '请输入12位的学号', classes: 'rounded'});	
+		       			return false;
+		       	}
+		       	var gender =$("input[name='gender']:checked").val();
+		       		if(gender == null || gender ==""){
+		       		M.toast({html: '性别不能为空', classes: 'rounded'});	
+		       			return false;
+		       	}
+		       	var tele = $('#tele').val();
+		       	 var pattern =  /^(0|[1-9]\d*)$/;
+		       	 	if(pattern.test(tele) == false){
+		       		M.toast({html: '请输入正确格式的电话号', classes: 'rounded'});	
+		               	return false; 
+		           }else if(tele.length != 11){
+		       	M.toast({html: '请输入11位的电话号', classes: 'rounded'});	
+		       			return false;
+		       	}	
+		       	var qq = $('#qq').val();
+		       	 var pattern =  /^(0|[1-9]\d*)$/;
+		       	 	if(pattern.test(qq) == false){
+				       	M.toast({html: '请输入正确格式的qq号', classes: 'rounded'});	
+		               	return false;
+		       	}else if(qq.length < 5 || qq.length >11){
+		       	M.toast({html: '请输入5-11位的qq号', classes: 'rounded'});	
+		       			return false;
+		       	}
+		       	M.toast({html: '提交成功，欢迎你的加入', classes: 'rounded'});
+		      }
 	</script>
 </body>
 
 </html>
+
