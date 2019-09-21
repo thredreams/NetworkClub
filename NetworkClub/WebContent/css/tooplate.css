@@ -97,21 +97,22 @@ ul.tm-home-list:not(.browser-default) {
 
 .tm-home-container {
   max-width: 805px;
-  margin-bottom: 500px;
+  margin-bottom: px;
 }
 
 #home {
-  background-image: url(../img/input-bg-05.jpg);
+  background-image: url(../img/input-bg-051.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: top;
+  background-attachment: fixed;
 }
 
 #survey {
-  background-image: url(../img/constructive_bg_01.jpg);
+  background-image: url(../img/bg2.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: bottom;
 }
 
 #register {
@@ -129,10 +130,11 @@ ul.tm-home-list:not(.browser-default) {
   background-repeat: no-repeat;
   background-position: center top;
   color: black;
+  background-attachment:fixed;
 }
 
 #login {
-  background-image: url(../img/constructive_bg_04.jpg);
+  background-image: url(../img/bg_04.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

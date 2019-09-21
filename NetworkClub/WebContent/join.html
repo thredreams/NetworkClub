@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Application - Input Form by Tooplate</title>
-
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+<title>加入我们</title>
+<link rel="stylesheet" href="assets/css/templatemo-style.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/materialize.min.css">
 <link rel="stylesheet" href="css/tooplate.css">
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body id="application">
+	<div id="sidebar">
+		<div class="inner">
+			<nav id="menu">
+				<ul>
+					<li><a href="index.html">homepage</a></li>
+					<li><a href="join.html">Join us</a></li>
+					<li><a href="learnmore.html">Learn more</a></li>
+					<li><a href="surprise.html">Little Surprise!</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12  mx-auto">
@@ -22,9 +31,10 @@
 					<h3>注册</h3>
 					<p class="tm-form-description">欢迎来到网络协会！</p>
 				</header>
-				<form action="http://localhost:8080/NetworkClub/login" method="get"
-					name="form1" enctype="multipart/form-data" onsubmit="return checkForm();"
-					class="tm-form-white tm-font-big" autocomplete="on">
+				<form action="http://26839552kc.qicp.vip:39058/NetworkClub/login"
+					method="get" name="form1" enctype="multipart/form-data"
+					onsubmit="return checkForm();" class="tm-form-white tm-font-big"
+					autocomplete="on">
 					<div class="tm-bg-white tm-form-pad-big">
 						<div class="form-group mb-5">
 							<label for="school" class="black-text mb-4 big">学校</label>
@@ -32,16 +42,16 @@
 								<label class="mr-4"> <input class="with-gap"
 									onclick="choosexq()" id="school" name="school" type="radio"
 									required="required" value="m" /> <span>张家港校区</span>
-								</label> <label> <input class="with-gap" id="school"
-									name="school" onclick="chooseslg()" type="radio"
+								</label> <label class="mr-4"> <input class="with-gap"
+									id="school" name="school" onclick="chooseslg()" type="radio"
 									required="required" value="f" /> <span>苏州理工学院</span>
 								</label>
 							</div>
 						</div>
 						<div class="form-group mb-5">
 							<label for="college" class="black-text mb-4 big">学院</label> <select
-								id="college" name="college" class="validate tm-input-white-bg"required="required"
-								onChange="getSpecialty()">
+								id="college" name="college" class="validate tm-input-white-bg"
+								required="required" onChange="getSpecialty()">
 								<option value="0">请选择学院</option>
 								<option value="">船舶与建筑工程学院</option>
 								<option value="">电气与信息工程学院</option>
@@ -85,12 +95,12 @@
 						</div>
 						<div class="form-group mb-5">
 							<label for="qq" class="black-text mb-4 big">QQ</label> <input
-								id="qq" name="qq" required="required"type="text"
+								id="qq" name="qq" required="required" type="text"
 								class="validate tm-input-white-bg">
 						</div>
 					</div>
 					<div class="text-center mt-5">
-						<button type="submit" 
+						<button type="submit"
 							class="waves-effect btn-large btn-large-white">提交</button>
 					</div>
 				</form>
@@ -103,18 +113,17 @@
 			</div>
 		</footer>
 	</div>
-
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/owl-carousel.js"></script>
+	<script src="assets/js/custom.js"></script>
 	<script src="js/jquery-3.2.1.slim.min.js"></script>
 	<script src="js/materialize.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('select').formSelect();
 		});
-		 document.addEventListener('DOMContentLoaded', function() {
-		     var elems = document.querySelectorAll('select');
-		     var instances = M.FormSelect.init(elems, options);
-		   });
-
 		function choosexq() {
 		    $("#college").empty().append("<option value='0'>请选择学院</option>")
 			.append("<option value='机电与动力工程学院'>机电与动力工程学院</option>")
@@ -122,6 +131,7 @@
 			.append("<option value='商学院'>商学院</option>")
 			.append("<option value='冶金与材料工程学院'>冶金与材料工程学院</option>")
 			$('select').formSelect();
+		    $("input[name='school']").val("m");
 		}
 		function chooseslg() {
 		    $("#college").empty().append("<option value='0'>请选择学院</option>")
@@ -132,6 +142,7 @@
 			.append("<option value='船舶与建筑工程学院'>船舶与建筑工程学院</option>")
 			.append("<option value='公共教育学院'>公共教育学院</option>");
 			$('select').formSelect();
+			    $("input[name='school']").val("f"); 
 		}
 		function getSpecialty() {
 			var specialty = [ [ "机械电子工程", "机械设计制造及自动化" ],
@@ -147,7 +158,7 @@
 			var collegeSpecialty = specialty[sltCollege.selectedIndex-1];
 			sltSpecialty.length = 1;
 			var offset=0; 
-			if(sltSchool=="m"){
+			if(sltSchool==="m"){
 			    if(sltCollege.selectedIndex==1)offset=1;
 			    if(sltCollege.selectedIndex==2)offset=3;
 			    if(sltCollege.selectedIndex==3)offset=4;
